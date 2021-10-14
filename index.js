@@ -12,7 +12,8 @@ const run = async (mode = "GENERATE") => {
   switch (mode) {
     case "GENERATE": {
       await generators.fromPrison(logger.console, api);
-      await generators.fromCourtMoves(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
       await generators.fromPoliceCustodySuite(logger.console, api);
       return;
     }
