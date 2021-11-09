@@ -1,7 +1,7 @@
 # Basm data generator
 A test data generator for generating moves into book a secure move
 
-Create an .env file withh the required credentials for book a secure move:
+Create an .env file with the required credentials for book a secure move:
 
 ```
 BASM_CLIENT_ID=<value>
