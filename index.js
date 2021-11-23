@@ -9,11 +9,31 @@ const run = async (mode = "GENERATE") => {
   const api = new BasmApi(new JsonApiClient(logger.noop, config.apiEndpoint));
   await api.initToken();
 
+  // printReferenceData(logger.console, api);
+  
   switch (mode) {
     case "GENERATE": {
-      await generators.fromPrison(logger.console, api);
+      // await generators.fromPrison(logger.console, api);
+      // await generators.fromPrison(logger.console, api);
+      
       await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      await generators.fromCourt(logger.console, api);
+      
       await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      await generators.fromCourtWithPnc(logger.console, api);
+      
       await generators.fromPoliceCustodySuite(logger.console, api);
       return;
     }
