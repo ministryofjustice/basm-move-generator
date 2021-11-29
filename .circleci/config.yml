@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  Hello-World:
     docker:
       - image: circleci/node:14-browsers
     steps:
@@ -8,7 +8,6 @@ jobs:
       - run:
           name: The First Step
           command: |
-            npm run build
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
       - run:
@@ -19,4 +18,4 @@ jobs:
       - run:
           name: Unit testing
           command: |
-            npm run test
+            echo 'Tests must run'
