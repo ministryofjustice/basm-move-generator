@@ -1,21 +1,24 @@
 version: 2.1
 jobs:
-  Hello-World:
+  build:
     docker:
       - image: circleci/node:14-browsers
     steps:
       - checkout
       - run:
-          name: The First Step
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
-      - run:
-          name: Code Has Arrived
-          command: |
-            ls -al
-            echo '^^^That should look familiar^^^'
-      - run:
-          name: Unit testing
-          command: |
-            echo 'Tests must run'
+
+  test: 
+    docker: 
+      - image: circleci/node:14-browsers
+    steps:
+      - checkout
+      - run: echo 'Tests must run'
+          
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
