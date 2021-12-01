@@ -1,0 +1,32 @@
+version: 2.1
+
+parameters:
+  docker-image:
+    type: string
+    default: cimg/node:14.18.0
+
+jobs:
+  build:
+    docker:
+      - image: << pipeline.parameters.docker-image >>
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
+
+  test: 
+    docker: 
+      - image: << pipeline.parameters.docker-image >>
+    steps:
+      - checkout
+      - run: echo 'Tests must run'
+          
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test: 
+         requires:
+          - build
