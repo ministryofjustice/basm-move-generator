@@ -16,6 +16,16 @@ jobs:
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
 
+  lint: 
+    docker: 
+      - image: << pipeline.parameters.docker-image >>
+    steps:
+      - checkout
+      - run: 
+          command: |
+            echo 'Run linter check'
+            npm run lint
+
   test: 
     docker: 
       - image: << pipeline.parameters.docker-image >>
@@ -27,6 +37,9 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test: 
+      - lint: 
          requires:
           - build
+      - test: 
+         requires:
+          - lint
