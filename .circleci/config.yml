@@ -15,7 +15,6 @@ jobs:
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
-            npm install
 
   lint: 
     docker: 
@@ -25,6 +24,7 @@ jobs:
       - run: 
           command: |
             echo 'Run linter check'
+            npm install
             npm run lint
 
   test: 
