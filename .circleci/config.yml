@@ -15,6 +15,7 @@ jobs:
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
+            npm install
 
   lint: 
     docker: 
