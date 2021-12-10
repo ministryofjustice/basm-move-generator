@@ -32,8 +32,11 @@ jobs:
       - image: << pipeline.parameters.docker-image >>
     steps:
       - checkout
-      - run: echo 'Tests must run'
-          
+      - run: 
+          command: |
+            echo 'Tests must run'
+            npm run test
+
 workflows:
   build_and_test:
     jobs:
