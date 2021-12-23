@@ -28,8 +28,6 @@ jobs:
           paths:
             - node_modules
             - ~/.cache
-      - run:
-          command: npm run build
 
   lint: 
     docker: 
