@@ -9,13 +9,8 @@ const run = async (mode = 'GENERATE') => {
   const api = new BasmApi(new JsonApiClient(logger.noop, config.apiEndpoint));
   await api.initToken();
 
-  // printReferenceData(logger.console, api);
-
   switch (mode) {
     case 'GENERATE': {
-      // await generators.fromPrison(logger.console, api);
-      // await generators.fromPrison(logger.console, api);
-
       await generators.fromCourt(logger.console, api);
       await generators.fromCourt(logger.console, api);
       await generators.fromCourt(logger.console, api);
@@ -52,4 +47,5 @@ run().catch((e) => {
   console.error(e?.config?.url);
   console.error(e?.config?.data);
   console.error(JSON.stringify(e?.response?.data, null, 2));
+  console.error(e);
 });
