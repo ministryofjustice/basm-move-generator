@@ -25,6 +25,7 @@ usage() {
   echo "                              If 'prod' is selected the user is asked to confirm the operation"
   echo "   -txout                     Transfer out"
   echo "   -txin                      Transfer in"
+  echo "   -rel                       Release"  
   echo "   -o <offenderNo>            The number offender to transfer, G5666UK. Required"
   echo "   -a <prisonId>              The id of the prison that is the target of the transfer. eg WWI. Required"
   echo "   -u <user>                  NOMIS user id. eg PBELL_GEN. Required for transfer in only."
@@ -36,6 +37,9 @@ usage() {
   echo
   echo "  Transfer prisoner G5666UK into WWI (Wansdsworth)"
   echo "  prison-api -ns dev -txin -o G5666UK -a WWI -u PBELL_GEN"
+
+  echo "  Release prisoner G4797UD from prison"
+  echo "  prison-api -ns dev -rel -o G4797UD -a null -u GCHEEMA_GEN"
   exit
 }
 
@@ -66,6 +70,9 @@ read_command_line() {
       ;;
     -txout)
       COMMAND=transferOut
+      ;;
+    -rel)
+      COMMAND=release
       ;;
     -help)
       usage
@@ -159,6 +166,16 @@ transfer_out() {
        --data "$TXOUT_BODY" | jq '{lastName,firstName,dateOfBirth,age,offenderNo,bookingId,agencyId,inOutStatus,status,statusReason,activeFlag,offenderId,rootOffenderId}'
 }
 
+release() {
+  confirm
+  echo "PUT ${BASE_URL}/release"
+  curl -s \
+       -X PUT ${BASE_URL}/release \
+       -H "${AUTH_HEADER}" \
+       -H 'Content-Type: application/json' \
+       --data '{ "movementReasonCode": "CR" }'
+}
+
 
 do_command() {
   case $COMMAND in
@@ -169,6 +186,10 @@ do_command() {
   transferOut)
     set_base_url
     transfer_out
+    ;;
+  release)
+    set_base_url
+    release
     ;;
   esac
 }
