@@ -1,14 +1,16 @@
 const config = require('./lib/utils/config');
 const { BasmApi } = require('./lib/clients/basmApi');
+const { BasmService } = require('./lib/service/basmService');
 const { JsonApiClient } = require('./lib/clients/jsonApiClient');
 const { logger } = require('./lib/utils/logger');
 const Generator = require('./lib/generators');
 const printReferenceData = require('./lib/referenceData');
 
 const run = async (mode = 'GENERATE') => {
-  const api = new BasmApi(new JsonApiClient(logger.noop, config.apiEndpoint));
-  const generator = new Generator(logger.console, api);
-  await api.initToken();
+  const basmApi = new BasmApi(new JsonApiClient(logger.noop, config.apiEndpoint));
+  const basmService = new BasmService(logger.console, basmApi);
+  await basmService.initToken();
+  const generator = new Generator(logger.console, basmApi, basmService);
 
   switch (mode) {
     case 'GENERATE': {
@@ -20,7 +22,7 @@ const run = async (mode = 'GENERATE') => {
       return;
     }
     case 'PRINT_REFERENCE_DATA': {
-      printReferenceData(logger.console, api);
+      printReferenceData(logger.console, basmApi);
       break;
     }
     default:
