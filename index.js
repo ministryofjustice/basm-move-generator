@@ -10,7 +10,7 @@ const run = async (mode = 'GENERATE') => {
   const basmApi = new BasmApi(new JsonApiClient(logger.noop, config.apiEndpoint));
   const basmService = new BasmService(logger.console, basmApi);
   await basmService.initToken();
-  const generator = new Generator(logger.console, basmApi, basmService);
+  const generator = new Generator(logger.console, basmService);
 
   switch (mode) {
     case 'GENERATE': {
