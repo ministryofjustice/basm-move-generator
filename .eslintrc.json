@@ -19,6 +19,6 @@
     "jest/valid-expect": "error",
     "max-classes-per-file": "off",
     "class-methods-use-this": "off",
-    "max-len": "warn"
+    "max-len": "off"
   }
 }
