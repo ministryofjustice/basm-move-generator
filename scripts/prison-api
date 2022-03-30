@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 #set -x
 declare -A AUTH_URL
-declare -A PRSION_API_URL
+declare -A PRISON_API_URL
 
 # DEV
 AUTH_URL['dev']=https://sign-in-dev.hmpps.service.justice.gov.uk/auth
-PRSION_API_URL['dev']=https://api-dev.prison.service.justice.gov.uk
+PRISON_API_URL['dev']=https://api-dev.prison.service.justice.gov.uk
 
 # PREPROD
 AUTH_URL['preprod']=https://sign-in-preprod.hmpps.service.justice.gov.uk/auth
-PRSION_API_URL['preprod']=https://api-preprod.prison.service.justice.gov.uk
+PRISON_API_URL['preprod']=https://api-preprod.prison.service.justice.gov.uk
 
 # PROD
 AUTH_URL['prod']=https://sign-in.hmpps.service.justice.gov.uk/auth
-PRSION_API_URL['prod']=https://api.prison.service.justice.gov.uk
+PRISON_API_URL['prod']=https://api.prison.service.justice.gov.uk
 
 usage() {
   echo
@@ -25,7 +25,8 @@ usage() {
   echo "                              If 'prod' is selected the user is asked to confirm the operation"
   echo "   -txout                     Transfer out"
   echo "   -txin                      Transfer in"
-  echo "   -rel                       Release"  
+  echo "   -rel                       Release" 
+  echo "   -list-out                  List prisoners who are currently OUT"  
   echo "   -o <offenderNo>            The number offender to transfer, G5666UK. Required"
   echo "   -a <prisonId>              The id of the prison that is the target of the transfer. eg WWI. Required"
   echo "   -u <user>                  NOMIS user id. eg PBELL_GEN. Required for transfer in only."
@@ -74,6 +75,9 @@ read_command_line() {
     -rel)
       COMMAND=release
       ;;
+    -list-out)
+      COMMAND=listOut
+      ;;  
     -help)
       usage
       ;;
@@ -111,7 +115,7 @@ set_base_url() {
     exit
   fi
 
-  BASE_URL=${PRSION_API_URL[$NS_KEY]}/api/offenders/${OFFENDER_NO}
+  BASE_URL=${PRISON_API_URL[$NS_KEY]}/api/offenders/${OFFENDER_NO}
 }
 
 set_auth_header() {
@@ -176,6 +180,16 @@ release() {
        --data '{ "movementReasonCode": "CR" }'
 }
 
+listOut() {
+  confirm
+  BASE_URL=${PRISON_API_URL[$NS_KEY]}
+  echo "GET ${BASE_URL}/api/prisoners/by-establishment/MDI"
+  curl -s \
+       -X GET ${BASE_URL}/api/prisoners/by-establishment/OUT \
+       -H "${AUTH_HEADER}" \
+       -H 'Content-Type: application/json'
+}
+
 
 do_command() {
   case $COMMAND in
@@ -190,6 +204,9 @@ do_command() {
   release)
     set_base_url
     release
+    ;;
+  listOut)
+    listOut
     ;;
   esac
 }
