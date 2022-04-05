@@ -15,7 +15,7 @@ const run = async () => {
   const prisonerSearchService = new PrisonerSearchService(logger.console, prisonerSearchClient);
 
   const basmApi = new BasmApi(new JsonApiClient(logger.noop, config.basm.apiEndpoint));
-  const basmService = new BasmService(logger.console, basmApi);
+  const basmService = new BasmService(logger.console, basmApi, config.basm.toPrison);
   await basmService.initToken();
 
   const generator = new Generator(logger.console, basmService, prisonerSearchService);
