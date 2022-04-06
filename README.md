@@ -3,12 +3,13 @@
 A test data generator for generating moves into book a secure move
 
 ## Setup and run
-Create an .env file with the required credentials for book a secure move:
+Create an .env file with the required credentials for book a secure move and the name of the 'to prison' e.g. lincoln_hmp for generated moves:
 
 ```
 BASM_CLIENT_ID=<value>
 BASM_CLIENT_SECRET=<value>
 BASM_API_URL=<value>
+BASM_TO_PRISON=<value>
 AUTH_CLIENT_ID=<value>
 AUTH_CLIENT_SECRET=<value>
 AUTH_API_URL=<value>
