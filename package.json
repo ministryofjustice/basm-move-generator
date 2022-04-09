@@ -27,7 +27,7 @@
     "eslint-plugin-jest": "^26.1.0",
     "jsona": "^1.9.6",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "morgan": "^1.10.0",
     "nunjucks": "^3.2.3",
     "passport": "^0.5.2",
