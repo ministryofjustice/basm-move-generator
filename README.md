@@ -52,7 +52,9 @@ We are assuming that people in this case are new prisoners.
 - **Name and DOB**: Random
 - **Prison Number**: Matches with Nomis Record (will always match)
 - **PNC**: N/A
-- **Automation**: Validates that arrival is currently IN prison
+- **Automation**:
+  - Loops through a predefined list of Existing Prison Numbers to find an Active Record
+  - Warns if record is not OUT or last movement type was not Court (CRT) - can't currently complete the booking in these states but can still be viewed
 
 Arrival has a PNC or prison number matching existing active prison record
 
