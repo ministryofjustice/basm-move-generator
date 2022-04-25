@@ -61,6 +61,14 @@ Arrival has a PNC or prison number matching existing active prison record
 Can't automate court return out but can validate that they are in the correct state and create the arrival for them.
 
 
+### ✅ Is single match (Done)
+- **From Location**: Police Custody Suite or Court
+- **Name and DOB**: Matches with Nomis Record
+- **Prison Number**: Matches with Nomis Record
+- **PNC**: Matches with Nomis Record
+- **Automation**:
+  - Loops through a predefined list of Existing Prison Numbers to find and INACTIVE OUT record. Logs an error if non exists
+
 ### ❌ Is current booking from Police Custody Suite (Work in Progress)
 - **From Location**: Police Custody Suite
 
@@ -70,10 +78,6 @@ Easy to generate as just need to create an arrival from PCS linked to any active
 Could validate that they are an “in prisoner”.
 
 Bit of an edge case - an example is absconding from temporary absence
-
-### ❌ Is single match (Work in Progress)
-From Location: Police Custody Suite or Court
-Arrival matching existing inactive prison record
 
 ### ❌ Is multiple match (Work in Progress)
 - **From Location**: Police Custody Suite or Court
