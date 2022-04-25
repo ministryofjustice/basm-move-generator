@@ -68,6 +68,7 @@ Can't automate court return out but can validate that they are in the correct st
 - **PNC**: Matches with Nomis Record
 - **Automation**:
   - Loops through a predefined list of Existing Prison Numbers to find and INACTIVE OUT record. Logs an error if non exists
+- **Issues**: Booking in the offender changes their state to ACTIVE IN which means they can't be reused for this scenario. Try not to book them in unless required
 
 ### ❌ Is current booking from Police Custody Suite (Work in Progress)
 - **From Location**: Police Custody Suite
