@@ -61,7 +61,7 @@ Arrival has a PNC or prison number matching existing active prison record
 Can't automate court return out but can validate that they are in the correct state and create the arrival for them.
 
 
-### ✅ Is single match (Done)
+### ✅ Is Single Match (Done)
 - **From Location**: Police Custody Suite or Court
 - **Name and DOB**: Matches with Nomis Record
 - **Prison Number**: Matches with Nomis Record
@@ -69,6 +69,16 @@ Can't automate court return out but can validate that they are in the correct st
 - **Automation**:
   - Loops through a predefined list of Existing Prison Numbers to find and INACTIVE OUT record. Logs an error if non exists
 - **Issues**: Booking in the offender changes their state to ACTIVE IN which means they can't be reused for this scenario. Try not to book them in unless required
+
+### ✅ Is Multiple Match (Done)
+- **From Location**: Police Custody Suite or Court
+- **Name and DOB**: Cookie-Alias Cutter 1980-01-01
+- **Prison Number**: N/A
+- **PNC**: N/A
+- **Automation**: Uses predefined details that match a few records with the same alias.
+- **Issues**: Booking in the offender changes their state to ACTIVE IN. They will still generate a multiple match scenario, though anyone who is ACTIVE IN, won't be able to be booked in.
+
+Arrival matching multiple existing inactive prison record
 
 ### ❌ Is current booking from Police Custody Suite (Work in Progress)
 - **From Location**: Police Custody Suite
@@ -79,11 +89,6 @@ Easy to generate as just need to create an arrival from PCS linked to any active
 Could validate that they are an “in prisoner”.
 
 Bit of an edge case - an example is absconding from temporary absence
-
-### ❌ Is multiple match (Work in Progress)
-- **From Location**: Police Custody Suite or Court
-
-Arrival matching multiple existing inactive prison record
 
 ### ❌ Is Unexpected Arrival (Work in Progress)
 We show search results and allow user to create new record if necessary
