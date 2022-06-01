@@ -70,7 +70,7 @@ Can't automate court return out but can validate that they are in the correct st
   - Loops through a predefined list of Existing Prison Numbers to find and INACTIVE OUT record. Logs an error if non exists
 - **Issues**: Booking in the offender changes their state to ACTIVE IN which means they can't be reused for this scenario. Try not to book them in unless required
 
-### ✅ Is Multiple Match (Done)
+### ✅ Is Manual Multiple Match (Done)
 - **From Location**: Police Custody Suite or Court
 - **Name and DOB**: Cookie-Alias Cutter 1980-01-01
 - **Prison Number**: N/A
@@ -79,6 +79,13 @@ Can't automate court return out but can validate that they are in the correct st
 - **Issues**: Booking in the offender changes their state to ACTIVE IN. They will still generate a multiple match scenario, though anyone who is ACTIVE IN, won't be able to be booked in.
 
 Arrival matching multiple existing inactive prison record
+
+### ✅ Is Automatic Multiple Match (Done)
+- **From Location**: Police Custody Suite or Court
+- **Name and DOB**: Cookie-Alias Cutter 1980-01-01
+- **Prison Number**: N/A
+- **PNC**: Existing PNC
+- **Automation**: Uses predefined details that match a few records with the same alias and one on an existing PNC.
 
 ### ❌ Is current booking from Police Custody Suite (Work in Progress)
 - **From Location**: Police Custody Suite
