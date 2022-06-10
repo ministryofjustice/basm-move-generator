@@ -86,6 +86,7 @@ Arrival matching multiple existing inactive prison record
 - **Prison Number**: N/A
 - **PNC**: Existing PNC
 - **Automation**: Uses predefined details that match a few records with the same alias and one on an existing PNC.
+- **Issues**: Booking in the offender changes their state to ACTIVE IN. If all matches that are found are ACTIVE IN, this scenario will show as a Court Return and not an Automatic Multiple Match. To resolve this, [release the matched offender in Nomis](https://dsdmoj.atlassian.net/wiki/spaces/NOM/pages/4006281419/Nomis+Processes#Transferring-a-Prisoner-Out).
 
 ### ❌ Is current booking from Police Custody Suite (Work in Progress)
 - **From Location**: Police Custody Suite
