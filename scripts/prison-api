@@ -26,7 +26,8 @@ usage() {
   echo "   -txout                     Transfer out"
   echo "   -txin                      Transfer in"
   echo "   -rel                       Release" 
-  echo "   -list-out                  List prisoners who are currently OUT"  
+  echo "   -list-out                  List prisoners who are currently OUT"
+  echo "   -add-body-scan             Add body scan to booking of provided offender"
   echo "   -o <offenderNo>            The number offender to transfer, G5666UK. Required"
   echo "   -a <prisonId>              The id of the prison that is the target of the transfer. eg WWI. Required"
   echo "   -u <user>                  NOMIS user id. eg PBELL_GEN. Required for transfer in only."
@@ -38,9 +39,12 @@ usage() {
   echo
   echo "  Transfer prisoner G5666UK into WWI (Wansdsworth)"
   echo "  prison-api -ns dev -txin -o G5666UK -a WWI -u PBELL_GEN"
-
+  echo
   echo "  Release prisoner G4797UD from prison"
   echo "  prison-api -ns dev -rel -o G4797UD -a null -u GCHEEMA_GEN"
+  echo
+  echo "  Add 10 body scans to prisoner G4797UD ('times' is optional, will default to 1)"
+  echo "  ./scripts/prison-api -ns dev -add-body-scan -o G4797UD  -a NMI -u GCHEEMA_GEN -times 10"
   exit
 }
 
@@ -77,7 +81,14 @@ read_command_line() {
       ;;
     -list-out)
       COMMAND=listOut
+      ;;
+    -add-body-scan)
+      COMMAND=addBodyScan
       ;;  
+    -times)
+      shift
+      TIMES=$1
+      ;;
     -help)
       usage
       ;;
@@ -183,13 +194,36 @@ release() {
 listOut() {
   confirm
   BASE_URL=${PRISON_API_URL[$NS_KEY]}
-  echo "GET ${BASE_URL}/api/prisoners/by-establishment/MDI"
+  echo "GET ${BASE_URL}/api/prisoners/by-establishment/OUT"
   curl -s \
        -X GET ${BASE_URL}/api/prisoners/by-establishment/OUT \
        -H "${AUTH_HEADER}" \
        -H 'Content-Type: application/json'
 }
 
+addBodyScan() {
+  confirm
+  BOOKING_ID=$(curl -s \
+       -X GET ${BASE_URL} \
+       -H "${AUTH_HEADER}" \
+       -H 'Content-Type: application/json' | jq '.bookingId')
+
+  for i in $(seq ${TIMES:-1}); do
+    echo "Adding BSCAN to ${BOOKING_ID}"
+    curl -s \
+        -X POST ${PRISON_API_URL[$NS_KEY]}/api/bookings/${BOOKING_ID}/personal-care-needs  \
+        -H "${AUTH_HEADER}" \
+        -H 'Content-Type: application/json' \
+        --data '{
+          "problemCode": "BSC6.0",
+          "problemStatus": "ON",
+          "commentText": "HAD AN XRAY",
+          "startDate": "2022-06-25",
+          "endDate": "2022-06-25"
+        }'
+  done
+
+}
 
 do_command() {
   case $COMMAND in
@@ -207,6 +241,10 @@ do_command() {
     ;;
   listOut)
     listOut
+    ;;
+  addBodyScan)
+    set_base_url
+    addBodyScan
     ;;
   esac
 }
