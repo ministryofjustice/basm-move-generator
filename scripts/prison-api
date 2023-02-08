@@ -218,7 +218,7 @@ addBodyScan() {
           "problemCode": "BSC6.0",
           "problemStatus": "ON",
           "commentText": "HAD AN XRAY",
-          "startDate": "2022-06-25",
+          "startDate": "2023-01-25",
           "endDate": "2022-06-25"
         }'
   done
