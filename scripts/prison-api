@@ -11,9 +11,6 @@ PRISON_API_URL['dev']=https://api-dev.prison.service.justice.gov.uk
 AUTH_URL['preprod']=https://sign-in-preprod.hmpps.service.justice.gov.uk/auth
 PRISON_API_URL['preprod']=https://api-preprod.prison.service.justice.gov.uk
 
-# PROD
-AUTH_URL['prod']=https://sign-in.hmpps.service.justice.gov.uk/auth
-PRISON_API_URL['prod']=https://api.prison.service.justice.gov.uk
 
 usage() {
   echo
