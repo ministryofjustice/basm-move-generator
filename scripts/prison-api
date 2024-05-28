@@ -5,11 +5,11 @@ declare -A PRISON_API_URL
 
 # DEV
 AUTH_URL['dev']=https://sign-in-dev.hmpps.service.justice.gov.uk/auth
-PRISON_API_URL['dev']=https://api-dev.prison.service.justice.gov.uk
+PRISON_API_URL['dev']=https://prison-api-dev.prison.service.justice.gov.uk
 
 # PREPROD
 AUTH_URL['preprod']=https://sign-in-preprod.hmpps.service.justice.gov.uk/auth
-PRISON_API_URL['preprod']=https://api-preprod.prison.service.justice.gov.uk
+PRISON_API_URL['preprod']=https://prison-api-preprod.prison.service.justice.gov.uk
 
 
 usage() {
