@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   docker-image:
     type: string
-    default: cimg/node:14.18.0
+    default: cimg/node:20.5.0
 
 jobs:
   build:
