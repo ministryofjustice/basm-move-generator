@@ -27,7 +27,7 @@
     "enquirer": "^2.3.6",
     "eslint-plugin-jest": "^26.1.5",
     "jsona": "^1.9.7",
-    "morgan": "^1.10.0",
+    "morgan": "^1.10.1",
     "nunjucks": "^3.2.3",
     "prompts": "^2.4.2",
     "uuid": "^8.3.2",
