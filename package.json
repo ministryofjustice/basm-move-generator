@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "husky install",
     "start": "node index.js",
+    "build": "npm ci --no-audit",
     "lint": "eslint . --cache --max-warnings 0",
     "format": "npm run lint -- --fix",
     "verify": "npm run lint && npm run test",
