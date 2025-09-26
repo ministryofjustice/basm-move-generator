@@ -33,15 +33,3 @@ jobs:
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_unit_tests.yml@v2 # WORKFLOW_VERSION
     needs: [node_build]
     secrets: inherit
-  build:
-    name: Build docker image from hmpps-github-actions
-    if: github.ref == 'refs/heads/main'
-    uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build.yml@v2 # WORKFLOW_VERSION
-    needs:
-      - node_unit_tests
-    with:
-      docker_registry: 'ghcr.io'
-      registry_org: 'ministryofjustice'
-      additional_docker_tag: ${{ inputs.additional_docker_tag }}
-      push: ${{ inputs.push || true }}
-      docker_multiplatform: true
