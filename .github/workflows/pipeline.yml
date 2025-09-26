@@ -30,6 +30,6 @@ jobs:
   # generic node unit tests - feel free to override with local tests if required
   node_unit_tests:
     name: node unit tests
-    uses: ./.github/workflows/unit_tests.yml@v2
+    uses: ./.github/workflows/unit_tests.yml
     needs: [node_build]
     secrets: inherit
