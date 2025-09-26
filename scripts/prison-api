@@ -46,55 +46,55 @@ usage() {
 }
 
 read_command_line() {
-  if [[ ! $1 ]]; then
+  if [[ ! $1 ]] then
     usage
   fi
-  while [[ $1 ]]; do
+  while [[ $1 ]] do
     case $1 in
     -ns)
       shift
       NS_KEY=$1
-      ;;
+
     -a)
       shift
       AGENCY_ID=$1
-      ;;
+
     -o)
       shift
       OFFENDER_NO=$1
-      ;;
+
     -u)
       shift
       USER_ID=$1
-      ;;
+
     -txin)
       COMMAND=transferIn
-      ;;
+
     -txout)
       COMMAND=transferOut
-      ;;
+
     -rel)
       COMMAND=release
-      ;;
+
     -list-out)
       COMMAND=listOut
-      ;;
+
     -add-body-scan)
       COMMAND=addBodyScan
-      ;;  
+
     -times)
       shift
       TIMES=$1
-      ;;
+
     -help)
       usage
-      ;;
+
     *)
       echo
       echo "Unknown argument '$1'"
       echo
       exit
-      ;;
+
     esac
     shift
   done
@@ -104,21 +104,21 @@ check_namespace() {
   case "$NS_KEY" in
   dev | preprod | prod)
     NAMESPACE=hmpps-welcome-to-prison-${NS_KEY}
-    ;;
+
   *)
     echo "-ns must be 'dev', 'preprod' or 'prod'"
     exit
-    ;;
+
   esac
 }
 
 set_base_url() {
-  if [[ ! $OFFENDER_NO ]]; then
+  if [[ ! $OFFENDER_NO ]] then
     echo "Offender number not set"
     exit
   fi
 
-  if [[ ! $AGENCY_ID ]]; then
+  if [[ ! $AGENCY_ID ]] then
     echo "Agency ID not set"
     exit
   fi
@@ -137,14 +137,14 @@ set_auth_header() {
 }
 
 confirm() {
-  if [[ ${NS_KEY} == "prod" ]]; then
+  if [[ ${NS_KEY} == "prod" ]] then
     local confirm=""
     echo "This is the PRODUCTION namespace"
-    while [[ ${confirm} != "Y" ]] && [[ ${confirm} != "n" ]]; do
+    while [[ ${confirm} != "Y" ]] && [[ ${confirm} != "n" ]] do
       read -p 'Continue? Y/n: ' -n 1 confirm
       echo
     done
-    if [[ ${confirm} != "Y" ]]; then
+    if [[ ${confirm} != "Y" ]] then
       exit
     fi
   fi
@@ -205,7 +205,7 @@ addBodyScan() {
        -H "${AUTH_HEADER}" \
        -H 'Content-Type: application/json' | jq '.bookingId')
 
-  for i in $(seq ${TIMES:-1}); do
+  for i in $(seq ${TIMES:-1}) do
     echo "Adding BSCAN to ${BOOKING_ID}"
     curl -s \
         -X POST ${PRISON_API_URL[$NS_KEY]}/api/bookings/${BOOKING_ID}/personal-care-needs  \
@@ -226,22 +226,22 @@ do_command() {
   transferIn)
     set_base_url
     transfer_in
-    ;;
+
   transferOut)
     set_base_url
     transfer_out
-    ;;
+
   release)
     set_base_url
     release
-    ;;
+
   listOut)
     listOut
-    ;;
+
   addBodyScan)
     set_base_url
     addBodyScan
-    ;;
+
   esac
 }
 
