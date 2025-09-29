@@ -81,7 +81,7 @@ read_command_line() {
       ;;
     -add-body-scan)
       COMMAND=addBodyScan
-      ;;  
+      ;;
     -times)
       shift
       TIMES=$1

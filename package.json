@@ -5,45 +5,43 @@
   "scripts": {
     "postinstall": "husky install",
     "start": "node index.js",
+    "build": "npm ci --no-audit",
     "lint": "eslint . --cache --max-warnings 0",
     "format": "npm run lint -- --fix",
     "verify": "npm run lint && npm run test",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --runInBand"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ministryofjustice/basm-move-generator"
   },
   "engines": {
-    "node": ">= 20",
-    "npm": ">=10"
+    "node": "^22.9.0",
+    "npm": "^11.2.0"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.2.0",
-    "axios": "^1.7.2",
-    "chalk": "^4.1.2",
-    "date-fns": "^2.28.0",
-    "dotenv": "^16.0.0",
+    "@faker-js/faker": "^9.4.0",
+    "axios": "^1.12.2",
+    "chalk": "^5.6.2",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.0",
     "enquirer": "^2.3.6",
-    "eslint-plugin-jest": "^26.1.5",
     "jsona": "^1.9.7",
-    "morgan": "^1.10.0",
-    "nunjucks": "^3.2.3",
+    "morgan": "^1.10.1",
+    "nunjucks": "^3.2.4",
     "prompts": "^2.4.2",
-    "uuid": "^8.3.2",
-    "winston": "^3.7.2"
+    "uuid": "^11.0.5",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
-    "@babel/traverse": "^7.17.9",
+    "@babel/traverse": "^7.28.3",
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.14.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "husky": "^7.0.4",
-    "jest": "^28.0.0",
-    "lint-staged": "^12.4.0",
+    "@ministryofjustice/eslint-config-hmpps": "^0.0.1",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^16.2.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.6.2"
+    "prettier": "^3.6.2"
   }
 }
