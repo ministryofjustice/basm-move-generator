@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.4.0",
+    "@ministryofjustice/hmpps-npm-script-allowlist": "0.0.3",
     "axios": "^1.12.2",
     "chalk": "^5.6.2",
     "date-fns": "^4.1.0",
@@ -39,7 +40,6 @@
   "devDependencies": {
     "@babel/traverse": "^7.28.3",
     "@ministryofjustice/eslint-config-hmpps": "^0.0.1",
-    "@ministryofjustice/hmpps-npm-script-allowlist": "0.0.3",
     "babel-eslint": "^10.1.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
