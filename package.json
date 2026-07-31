@@ -25,7 +25,7 @@
   "dependencies": {
     "@faker-js/faker": "^9.4.0",
     "@ministryofjustice/hmpps-npm-script-allowlist": "0.0.3",
-    "axios": "^1.16.0",
+    "axios": "^1.18.0",
     "chalk": "4.1.2",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.0",
